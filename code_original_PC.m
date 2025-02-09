@@ -1,5 +1,8 @@
+%% input degree k and the number of strategies n
+k=4;n=3;
 
-k=4;n=3;nk=nchoosek(n+k-1,k);nk_1=nchoosek(n+k-2,k-1);
+
+nk=nchoosek(n+k-1,k);nk_1=nchoosek(n+k-2,k-1);
 % nchoosek(n+k-1,k)
 kref=zeros(nk,n);
 kref(1,1)=-1;
@@ -30,24 +33,24 @@ for i=1:nk_1
     end
 end
 
-% %traditional pgg
-% a=zeros(nk,n);
-% r=4;
-% for i=1:nk
-%     a(i,1)=r*(kref(i,1)+1)/(k+1)-1;
-%     a(i,2)=r*kref(i,1)/(k+1);
-% end
+%% input payoff structure: traditional pgg
+a=zeros(nk,n);
+r=4;
+for i=1:nk
+    a(i,1)=r*(kref(i,1)+1)/(k+1)-1;
+    a(i,2)=r*kref(i,1)/(k+1);
+end
 
-% % pgg with peer punishment
-% a=zeros(nk,n);
-% r=3;c=1;alpha=0.05;beta=0.02;
-% for i=1:nk
-%     a(i,1)=r*(kref(i,1)+kref(i,3)+1)*c/(k+1)-c;
-%     a(i,2)=r*(kref(i,1)+kref(i,3))*c/(k+1)-beta*kref(i,3);
-%     a(i,3)=r*(kref(i,1)+kref(i,3)+1)*c/(k+1)-c-alpha*kref(i,2);
-% end
+%% Or: pgg with peer punishment
+a=zeros(nk,n);
+r=3;c=1;alpha=0.05;beta=0.02;
+for i=1:nk
+    a(i,1)=r*(kref(i,1)+kref(i,3)+1)*c/(k+1)-c;
+    a(i,2)=r*(kref(i,1)+kref(i,3))*c/(k+1)-beta*kref(i,3);
+    a(i,3)=r*(kref(i,1)+kref(i,3)+1)*c/(k+1)-c-alpha*kref(i,2);
+end
 
-% pgg with pool punishment
+%% Or: pgg with pool punishment
 a=zeros(nk,n);
 r=4;c=1;alpha=0.2;beta=1;
 for i=1:nk
@@ -60,8 +63,8 @@ for i=1:nk
     a(i,3)=r*(kref(i,1)+kref(i,3)+1)*c/(k+1)-c-alpha;
 end
 
-
-T=10;step=1;
+%% numerical calculation of the primitive replicator equation
+T=10;step=0.01;
 
 x=zeros(n,T/step+1);
 x(:,1)=1/n;
