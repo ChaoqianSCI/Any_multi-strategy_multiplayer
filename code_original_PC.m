@@ -3,7 +3,6 @@ k=4;n=3;
 
 
 nk=nchoosek(n+k-1,k);nk_1=nchoosek(n+k-2,k-1);
-% nchoosek(n+k-1,k)
 kref=zeros(nk,n);
 kref(1,1)=-1;
 for i=1:nk
@@ -33,7 +32,7 @@ for i=1:nk_1
     end
 end
 
-%% input payoff structure: traditional pgg
+%% input payoff structure: traditional pgg, Eq. (2.51)
 a=zeros(nk,n);
 r=4;
 for i=1:nk
@@ -41,7 +40,7 @@ for i=1:nk
     a(i,2)=r*kref(i,1)/(k+1);
 end
 
-%% Or: pgg with peer punishment
+%% Or: pgg with peer punishment, Eq. (3.1)
 a=zeros(nk,n);
 r=3;c=1;alpha=0.05;beta=0.02;
 for i=1:nk
@@ -50,7 +49,7 @@ for i=1:nk
     a(i,3)=r*(kref(i,1)+kref(i,3)+1)*c/(k+1)-c-alpha*kref(i,2);
 end
 
-%% Or: pgg with pool punishment
+%% Or: pgg with pool punishment, Eq. (4.1)
 a=zeros(nk,n);
 r=4;c=1;alpha=0.2;beta=1;
 for i=1:nk
@@ -162,11 +161,3 @@ for t=step:step:T
     end
     pause(0.001)
 end
-
-% hold on
-% for i=1:n
-%     plot(step:step:T+step,x(i,:))
-% end
-% legend
-% 
-% (k+1)^2/(k+3)
