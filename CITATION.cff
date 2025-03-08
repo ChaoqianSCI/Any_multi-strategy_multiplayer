@@ -1,0 +1,16 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  A general computational framework for multi-strategy
+  collective social evolution on networks
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Chaoqian
+    family-names: Wang
+repository-code: >-
+  https://github.com/ChaoqianSCI/Any_multi-strategy_multiplayer
